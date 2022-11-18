@@ -38,7 +38,8 @@ $(document).ready(function () {
             newMessage.className = 'message-box'
             if (userName.textContent === msg.from) {
                 newMessage.innerHTML = '<div class="message-box">\n' +
-                    '                    <div class="message-from-me">\n' +
+                    '                      <div class="message-box-arrow-from"></div>\n' +
+                    '                      <div class="message-from-me">\n' +
                     '                        <div class="message-text-from-me">\n' +
                     '                            <p>\n' +
                     msg.data +
@@ -52,6 +53,7 @@ $(document).ready(function () {
                 messagesSpace.appendChild(newMessage)
             } else {
                 newMessage.innerHTML = '<div class="message-box">\n' +
+                    '                    <div class="message-box-arrow-to"></div>\n ' +
                     '                    <div class="message-to-me">\n' +
                     '                        <div class="message-username">\n' +
                     msg.from +
@@ -69,10 +71,8 @@ $(document).ready(function () {
                 messagesSpace.appendChild(newMessage)
             }
             messagesSpace.scrollTop = messagesSpace.scrollHeight;
-
         }
     }
-
 })
 
 

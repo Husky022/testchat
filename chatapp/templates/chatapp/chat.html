@@ -20,6 +20,7 @@
         {% for message in messages %}
             {% if message.from_user == user_name %}
                 <div class="message-box">
+                    <div class="message-box-arrow-from"></div>
                     <div class="message-from-me">
                         <div class="message-text-from-me">
                             <p>
@@ -33,6 +34,7 @@
                 </div>
             {% else %}
                 <div class="message-box">
+                    <div class="message-box-arrow-to"></div>
                     <div class="message-to-me">
                         <div class="message-username">
                             {{ message.from_user }}

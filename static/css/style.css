@@ -219,17 +219,27 @@ hr{
     justify-content: center;
 }
 
+.message-box-arrow-from {
+    float: right;
+    margin-top: 6px;
+	border-top: 15px solid #5d5fef;
+	border-right: 15px solid transparent;
+}
+
+.message-box-arrow-to {
+    float: left;
+    margin-top: 6px;
+	border-top: 15px solid #F2F2F7;;
+	border-left: 15px solid transparent;
+}
+
 .message-box{
     width: 100%;
 }
 
-.message-from-me, .message-to-me{
-    border-radius: 6px;
-    margin-top: 6px;
-
-}
-
 .message-to-me{
+    border-radius: 0 6px 6px 6px;
+    margin-top: 6px;
     max-width: 500px;
     min-width: 150px;
     background: #F2F2F7;
@@ -238,19 +248,17 @@ hr{
 }
 
 .message-from-me{
+    border-radius: 6px 0 6px 6px;
+    margin-top: 6px;
     max-width: 500px;
     min-width: 150px;
     background: #5D5FEF;
     padding: 4px 8px 4px 8px;
     float: right;
-
 }
 
 .message-text-from-me{
     padding: 1px 1px 1px 1px;
-    /*position: absolute;*/
-    /*left: 0;*/
-    /*top: 0;*/
     min-height: 39px;
     max-width: 200px;
     color: #FFFFFF;
