@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block stylesheets %}
+        {% include 'chatapp/includes/inc_stylesheets.html' %}
+    {% endblock stylesheets %}
+    {% block fonts %}
+        {% include 'chatapp/includes/inc_fonts.html' %}
+    {% endblock fonts %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="chat-page">
+    <section class="main-content">
+        {% block content %}
+        {% endblock %}
+    </section>
+</body>
+    {% block js %}
+        {% include 'chatapp/includes/inc_js.html' %}
+    {% endblock %}
+</html>

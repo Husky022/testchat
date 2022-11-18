@@ -1,0 +1,62 @@
+{% extends 'chatapp/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="chat-wrap">
+    <div class="chat-header">
+        <div class="chat-title">
+            {{ title }}
+        </div>
+        <div class="chat-persons">
+            3 участника
+        </div>
+        <a href="{% url 'main:choose_chat' %}">
+            <img class="exit-icon-chat" src="{% static 'img/exit.png' %}" alt="">
+        </a>
+    </div>
+    <hr>
+    <div class="write-space">
+        {% for message in messages %}
+            {% if message.from_user == user_name %}
+                <div class="message-box">
+                    <div class="message-from-me">
+                        <div class="message-text-from-me">
+                            <p>
+                                {{ message.text }}
+                            </p>
+                        </div>
+                        <div class="message-time from">
+                            {{ message.time_client }}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="message-box">
+                    <div class="message-to-me">
+                        <div class="message-username">
+                            {{ message.from_user }}
+                        </div>
+                        <div class="message-text-to-me">
+                            <p>
+                                {{ message.text }}
+                            </p>
+                        </div>
+                        <div class="message-time to">
+                            {{ message.time_client }}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="input-block">
+        <label>
+            <input class="input-box" type="text" name="message-input" placeholder="Сообщение...">
+        </label>
+        <img class="send-message-button" src="{% static 'img/SendMsg.svg' %}" alt="">
+    </div>
+    <div id="username" style="display: none">{{ user_name }}</div>
+</div>
+
+{% endblock %}

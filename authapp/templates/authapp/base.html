@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block stylesheets %}
+        {% include 'chatapp/includes/inc_stylesheets.html' %}
+    {% endblock stylesheets %}
+    {% block fonts %}
+        {% include 'chatapp/includes/inc_fonts.html' %}
+    {% endblock fonts %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="auth-page">
+    <section class="main-content">
+        {% block content %}
+        {% endblock %}
+    </section>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'chatapp/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+{% include 'chatapp/includes/inc_menu.html' %}
+
+
+<div class="choose-chat-wrap">
+    <h1 class="choose-chat-title-text">{{title}}</h1>
+    <hr>
+    <div class="chats-container">
+        {% for chat in chats %}
+        <a class="chat-link" href="{% url 'main:chat' chat.pk %}">
+            <div class="chat-button">
+                <div class="chat-button-text">
+                    {{ chat.chat_name }}
+                </div>
+                <div class="chat-button-arrow">
+                    <img src="{% static 'img/Layer 2.svg' %}" alt=""/>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+        <form class="create-chat-form" method="get">
+            {% csrf_token %}
+            <div class="input-place">
+                {{ form.chat_name }}
+            </div>
+            <div>
+                <input id="creator" class="submit-button-create" type="submit" value="Создать">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
