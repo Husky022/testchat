@@ -32,10 +32,19 @@ $(document).ready(function () {
             sendButton.onclick = () => {
                 if (messageInput.value !== ''){
                     let message_id = 'msg-' + Math.round(Math.random() * 1000000)
-                    let date = new Date(Date.now())
-                    date.setHours(date.getHours() + 3);
-                    let date_str = date.getHours() + ':' + date.getMinutes();
+                    let date = new Date();
+                    let date_str = date.toLocaleDateString();
+                    let time_str = date.toLocaleTimeString().slice(0,-3);
                     const newMessage = document.createElement('div');
+                    let separator = $('.separator:last')
+                    if (separator.text() === 'Сообщений пока что нет...'){
+                        separator.html(date_str)
+                    }
+                    else if (separator.text() !== date_str){
+                        const newSeparator = document.createElement('div');
+                        newSeparator.innerHTML = '<div class="separator">' + date_str + '</div>'
+                        messagesSpace.appendChild(newSeparator);
+                    }
                     newMessage.innerHTML = '<div id="' + message_id + '" class="message-box">' +
                                              '<div class="message-box-arrow-from"></div>' +
                                                 '<div class="message-from-me">' +
@@ -52,7 +61,7 @@ $(document).ready(function () {
                                                         '</svg>' +
                                                     '</div>' +
                                                     '<div class="message-time from">' +
-                                                        date_str +
+                                                        time_str +
                                                     '</div>' +
                                                  '</div>' +
                                             '</div>' +
@@ -64,7 +73,8 @@ $(document).ready(function () {
                         'chat_id': window.location.pathname.toString().slice(6, -1),
                         'data': messageInput.value,
                         'from': userName.textContent,
-                        'datetime': date,
+                        'date': date_str,
+                        'time': time_str,
                         'msg_id': message_id
                     }
                     wsClient.send(JSON.stringify(data));
@@ -102,6 +112,15 @@ $(document).ready(function () {
                     '                            </svg>'
                 }
             }  else {
+                let separator = $('.separator:last')
+                    if (separator.text() === 'Сообщений пока что нет...'){
+                        separator.html(msg.date)
+                    }
+                    else if (separator.text() !== msg.date){
+                        const newSeparator = document.createElement('div');
+                        newSeparator.innerHTML = '<div class="separator">' + msg.date + '</div>'
+                        messagesSpace.appendChild(newSeparator);
+                    }
                 let newMessage = document.createElement('div');
                 newMessage.setAttribute("class", "message-box unread");
                 newMessage.setAttribute("id", msg.msg_id);
@@ -118,7 +137,7 @@ $(document).ready(function () {
                                                     '</p>' +
                                                 '</div>' +
                                                 '<div class="message-time to">' +
-                                                    msg.datetime.slice(11, -8) +
+                                                    msg.time +
                                                 '</div>' +
                                             '</div>'
                     messagesSpace.appendChild(newMessage);

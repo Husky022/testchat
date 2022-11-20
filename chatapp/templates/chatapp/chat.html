@@ -17,6 +17,9 @@
     </div>
     <hr>
     <div class="write-space">
+        {% if not messages %}
+            <div class="separator">Сообщений пока что нет...</div>
+        {% endif %}
         {% for message in messages %}
             {% ifchanged %}
                 <div class="separator">{{ message.date_client }}</div>
@@ -66,9 +69,7 @@
                 {% endif %}
                     <div class="message-box-arrow-to"></div>
                     <div class="message-to-me">
-                        <div class="message-username">
-                            {{ message.from_user }}
-                        </div>
+                        <div class="message-username">{{ message.from_user }}</div>
                         <div class="message-text-to-me">
                             <p>
                                 {{ message.text }}

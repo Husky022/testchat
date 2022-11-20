@@ -13,8 +13,8 @@ def parse_message(msg_dict):
         msg_dict['data'],
         msg_dict['chat_id'],
         msg_dict['from'],
-        msg_dict['datetime'].split('T')[0],
-        msg_dict['datetime'].split('T')[1][:5],
+        msg_dict['date'],
+        msg_dict['time'],
         False
     )
     return msg_tuple
@@ -67,6 +67,7 @@ async def new_client_connected(client_socket):
         while True:
             new_message = await client_socket.recv()
             msg_dict = json.loads(new_message)
+            print(msg_dict)
             if msg_dict.get('service_info', None):
                 chat_id = msg_dict.get('service_info')
                 user_name = msg_dict.get('username')
