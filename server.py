@@ -41,7 +41,7 @@ def db_add_message(msg):
 def db_change_message_status(status, msg_id):
     conn = sqlite3.connect('db.sqlite3')
     curr = conn.cursor()
-    curr.execute('''UPDATE chatapp_message SET is_read = ? WHERE id = ?''', (status, msg_id))
+    curr.execute('''UPDATE chatapp_message SET is_read = ? WHERE msg_id = ?''', (status, msg_id))
     conn.commit()
     conn.close()
 
@@ -49,8 +49,12 @@ def db_change_message_status(status, msg_id):
 async def send_message(msg_dict):
     message = json.dumps(msg_dict)
     for client, client_data in clients_dict.items():
-        if msg_dict['chat_id'] == client_data[0]:
-            await client.send(message)
+        if msg_dict.get('status', None) == 'readed':
+            if msg_dict['from'] == client_data[1]:
+                await client.send(message)
+        else:
+            if msg_dict['chat_id'] == client_data[0]:
+                await client.send(message)
 
 
 async def user_disconnected(client_socket):
@@ -81,6 +85,7 @@ async def new_client_connected(client_socket):
                     'status': 'readed',
                     'msg_id': msg_id,
                     'chat_id': clients_dict[client_socket][0],
+                    'from': msg_dict['from']
                 }
                 await send_message(status_message)
             else:
