@@ -18,6 +18,9 @@
     <hr>
     <div class="write-space">
         {% for message in messages %}
+            {% ifchanged %}
+                <div class="separator">{{ message.date_client }}</div>
+            {% endifchanged %}
             {% if message.from_user == user_name %}
                 <div id={{ message.msg_id }} class="message-box">
                     <div class="message-box-arrow-from"></div>

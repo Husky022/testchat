@@ -335,6 +335,18 @@ hr{
     height: 14px;
 }
 
+.separator{
+    width: 100%;
+    text-align: center;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #666668;
+    margin: 16px 0 20px 0;
+}
+
 .submit-button-create{
     position: absolute;
     top: 36px;

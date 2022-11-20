@@ -8,7 +8,6 @@ clients_dict = {}  # key - client_id (websocket) : value - (chat_id, username)
 
 
 def parse_message(msg_dict):
-    print(msg_dict)
     msg_tuple = (
         msg_dict['msg_id'],
         msg_dict['data'],
@@ -61,8 +60,6 @@ async def user_disconnected(client_socket):
     chat_id = clients_dict[client_socket][0]
     del clients_dict[client_socket]
     await send_message(info_msg(chat_id))
-    print(clients_dict)
-    print(set(clients_dict.values()))
 
 
 async def new_client_connected(client_socket):
@@ -75,10 +72,7 @@ async def new_client_connected(client_socket):
                 user_name = msg_dict.get('username')
                 clients_dict[client_socket] = chat_id, user_name
                 await send_message(info_msg(chat_id))
-                print(clients_dict)
-                print(set(clients_dict.values()))
             elif msg_dict.get('status_info', None):
-                print(msg_dict)
                 msg_id = msg_dict['msg_id']
                 db_change_message_status(True, msg_id)
                 status_message = {
