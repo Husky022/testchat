@@ -257,6 +257,15 @@ hr{
     float: right;
 }
 
+.message-status{
+    float: right;
+    margin-right: 5px;
+}
+
+.message-status-img{
+
+}
+
 .message-text-from-me{
     padding: 1px 1px 1px 1px;
     min-height: 39px;
@@ -305,6 +314,7 @@ hr{
 
 .from{
     color: #FFFFFF;
+    margin-right: 5px;
 }
 
 .message-username{

@@ -9,6 +9,7 @@ class Chat(models.Model):
 
 
 class Message(models.Model):
+    msg_id = models.CharField(max_length=16)
     date_client = models.CharField(max_length=16)
     time_client = models.CharField(max_length=16)
     from_user = models.CharField(max_length=16)
