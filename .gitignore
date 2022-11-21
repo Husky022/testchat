@@ -1,4 +1,4 @@
 venv
 .idea
 test.py
-secrets.py
+proj_secrets.py
